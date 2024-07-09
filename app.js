@@ -1,12 +1,12 @@
 const path = require("path");
 const express = require("express");
-const { title } = require("process");
 const hbs = require("hbs");
 const request = require("request");
-// const weatherData = require("./utills/weather.js");
+const weatherData = require("./utills/weather.js");
 const geocode = require("./utills/geocode.js");
 const forcast = require("./utills/forcast.js");
 const { error } = require("console");
+const { title } = require("process");
 
 const app = express();
 
@@ -44,34 +44,33 @@ app.get("/help", (req, res) => {
   });
 });
 
-app.get("/weather", (req, res) => {
+app.get("/weather", async (req, res) => {
   if (!req.query.address) {
     return res.send({
       error: "Please provide address",
     });
   }
-  
-  // weatherData(req.query.address)
+  res.json(await weatherData(req.query.address));
 
-  geocode(
-    req.query.address,
-    (error, { latitude, longitude, location } = {}) => {
-      if (error) {
-        return res.send({ error });
-      }
-      forcast(latitude, longitude, (error, forecastData) => {
-        if (error) {
-          return res.send({ error });
-        }
+  // geocode(
+  //   req.query.address,
+  //   (error, { latitude, longitude, location } = {}) => {
+  //     if (error) {
+  //       return res.send({ error });
+  //     }
+  //     forcast(latitude, longitude, (error, forecastData) => {
+  //       if (error) {
+  //         return res.send({ error });
+  //       }
 
-        res.send({
-          forecast: forecastData,
-          location,
-          address: req.query.address,
-        });
-      });
-    }
-  );
+  //       res.send({
+  //         forecast: forecastData,
+  //         location,
+  //         address: req.query.address,
+  //       });
+  //     });
+  //   }
+  // );
 
   // res.send({
   //   forcast: "This is forcast",

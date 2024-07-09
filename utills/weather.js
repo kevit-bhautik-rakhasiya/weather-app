@@ -6,11 +6,11 @@ const geocode = async (address) => {
     address;
 
   try {
-    const weatherData = await axios.get(url);
-    const body = weatherData.data;
-    console.log(body);
+    const {data} = await axios.get(url);
+    console.log(url);
+    return data;
   } catch (error) {
-    console.log("Unable to find location. Please try again!!...");
+    return "Unable to find location. Please try again!!...";
   }
 };
 // geocode("surat").then((res)=>res)

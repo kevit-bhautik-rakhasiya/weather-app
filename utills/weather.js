@@ -14,6 +14,6 @@ const geocode = async (address) => {
   }
 };
 // geocode("surat").then((res)=>console.log(res))
-console.log(geocode("rajkot").then((res) => res));
+// geocode("surat").then((res) => res);
 
 module.exports = geocode;

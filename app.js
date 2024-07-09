@@ -3,7 +3,7 @@ const express = require("express");
 const { title } = require("process");
 const hbs = require("hbs");
 const request = require("request");
-// const geocode = require("./utills/weather.js");
+// const weatherData = require("./utills/weather.js");
 const geocode = require("./utills/geocode.js");
 const forcast = require("./utills/forcast.js");
 const { error } = require("console");
@@ -50,6 +50,8 @@ app.get("/weather", (req, res) => {
       error: "Please provide address",
     });
   }
+  
+  // weatherData(req.query.address)
 
   geocode(
     req.query.address,
@@ -93,6 +95,6 @@ app.get("*", (req, res) => {
   });
 });
 
-app.listen(3000, () => {
-  console.log("Server is start on port no 3000...");
+app.listen(4000, () => {
+  console.log("Server is start on port no 4000...");
 });

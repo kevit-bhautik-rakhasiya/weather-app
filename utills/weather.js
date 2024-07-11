@@ -6,14 +6,16 @@ const geocode = async (address) => {
     address;
 
   try {
-    const {data} = await axios.get(url);
+    const { data } = await axios.get(url);
     console.log(url);
     return data;
   } catch (error) {
-    return "Unable to find location. Please try again!!...";
+    // console.log(error);
+    return { error: "Unable to find location. Please try again!!..." };
   }
 };
-// geocode("surat").then((res)=>res)
+
+// geocode("surat").then((res) => res);
 // geocode("surat").then((res) => res);
 
 module.exports = geocode;

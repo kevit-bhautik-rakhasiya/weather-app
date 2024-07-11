@@ -1,6 +1,6 @@
 console.log("This is client side javascript file!!...");
 
-const url = "http://localhost:4000/weather?address=";
+// const url = "http://localhost:4000/weather?address=";
 
 const form = document.querySelector("form");
 const search = document.querySelector("input");
@@ -15,7 +15,7 @@ form.addEventListener("submit", (e) => {
   thirdMessage.textContent = "";
 
   const inputData = search.value;
-  fetch(url + inputData)
+  fetch("/weather?address=" + inputData)
     .then((res) => res.json())
     .then((data) => {
       if (data.error) {

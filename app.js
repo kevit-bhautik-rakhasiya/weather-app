@@ -5,10 +5,9 @@ const request = require("request");
 const weatherData = require("./utills/weather.js");
 const geocode = require("./utills/geocode.js");
 const forcast = require("./utills/forcast.js");
-const { error } = require("console");
-const { title } = require("process");
 
 const app = express();
+const port = process.env.PORT || 4000;
 
 //Define path for express config
 const publicPath = path.join(__dirname, "/public");
@@ -94,6 +93,6 @@ app.get("*", (req, res) => {
   });
 });
 
-app.listen(4000, () => {
+app.listen(port, () => {
   console.log("Server is start on port no 4000...");
 });
